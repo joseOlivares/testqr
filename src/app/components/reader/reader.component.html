@@ -1,6 +1,5 @@
-<div class="container">
 
-  <div *ngIf="availableDevices">
+  <div *ngIf="availableDevices" class="mb-3">
 
     <select (change)="onDeviceSelectChange(myDevice.value)" #myDevice>
         <option value="" [selected]="!selectedDevice">No Device</option>
@@ -25,7 +24,7 @@
     <h2 *ngIf="!this.selectedDevice">Ninguna cámara seleccionada</h2>
 
     <p>
-        Resultados:
+        Resultado (Lectura Código QR):
         <strong>{{ qrResultString }}</strong>
     </p>
 
@@ -53,4 +52,4 @@
 
   </div>
 
-</div>
+

@@ -65,7 +65,14 @@ export class ReaderComponent implements OnInit {
 
     onDeviceSelectChange(selectedValue: string) {
         console.log('Selection changed: ', selectedValue);
-        //this.selectedDevice = this.scanner.getDeviceById(selectedValue);
+
+        for(const device of this.availableDevices ){
+            if(device.deviceId===selectedValue){
+              this.selectedDevice=device;
+            }
+        }
+
+        //this.selectedDevice = this.scanner.getDeviceById(selectedValue); deprecated
 
     }
 
