@@ -7,9 +7,14 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { ReaderComponent } from './components/reader/reader.component';
 import { CodigoqrComponent } from './components/codigoqr/codigoqr.component';
 
+import {MatSelectModule} from '@angular/material/select'
+import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 
 // QR Scanner
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatOption, MatOptionModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +27,10 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     AppRoutingModule,
     QRCodeModule,
     ZXingScannerModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatOptionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

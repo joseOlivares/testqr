@@ -1,41 +1,56 @@
-<div *ngIf="availableDevices">
-  <select (change)="onDeviceSelectChange(myDevice.value)" #myDevice>
-      <option value="" [selected]="!selectedDevice">No Device</option>
-      <option *ngFor="let device of availableDevices" [value]="device.deviceId" [selected]="selectedDevice && device.deviceId === selectedDevice.deviceId">{{ device.label }}</option>
-  </select>
-</div>
+<div class="container">
 
-<div [hidden]="!hasCameras">
+  <div *ngIf="availableDevices">
 
-  <zxing-scanner #scanner class="test-class" start="true" [device]="selectedDevice" (scanSuccess)="handleQrCodeResult($event)" cssClass="small-video"></zxing-scanner>
+    <select (change)="onDeviceSelectChange(myDevice.value)" #myDevice>
+        <option value="" [selected]="!selectedDevice">No Device</option>
+        <option *ngFor="let device of availableDevices" [value]="device.deviceId" [selected]="selectedDevice && device.deviceId === selectedDevice.deviceId">{{ device.label }}</option>
+    </select>
+    <!--
+    <mat-form-field appearance="fill">
+      <mat-label>Devices</mat-label>
+      <mat-select (change)="onDeviceSelectChange(myDevice.value)" #myDevice>
+        <mat-option *ngFor="let device of availableDevices" [value]="device.deviceId" [selected]="selectedDevice && device.deviceId === selectedDevice.deviceId">
+          {{device.label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    -->
+  </div>
 
-  <h2 *ngIf="!this.selectedDevice">No camera selected.</h2>
+  <div [hidden]="!hasCameras">
 
-  <p>
-      Result:
-      <strong>{{ qrResultString }}</strong>
-  </p>
+    <zxing-scanner #scanner class="test-class" start="true" [device]="selectedDevice" (scanSuccess)="handleQrCodeResult($event)" cssClass="small-video"></zxing-scanner>
 
-</div>
+    <h2 *ngIf="!this.selectedDevice">Ninguna cámara seleccionada</h2>
 
-<div *ngIf="!hasCameras && hasPermission === true">
+    <p>
+        Resultados:
+        <strong>{{ qrResultString }}</strong>
+    </p>
 
-  <h1>Looks like your actual device does not have cameras, or I could no find'em. </h1>
+  </div>
 
-</div>
+  <div *ngIf="!hasCameras && hasPermission === true">
 
-<div *ngIf="hasPermission === undefined">
+    <h1>Parece que el dispositivo actual no tiene camarás, o no podemos detectarla </h1>
 
-  <h1>Waiting for permissions.</h1>
+  </div>
 
-  <blockquote>
-      <h2>If your device does not has cameras, no permissions will be asked.</h2>
-  </blockquote>
+  <div *ngIf="hasPermission === undefined">
 
-</div>
+    <h1>Esperando por permisos</h1>
 
-<div *ngIf="hasPermission === false">
+    <blockquote>
+        <h2>Si su dispositivo no tiene camaras, no se solicitará ningún permiso</h2>
+    </blockquote>
 
-  <h1>You denied the camera permissions, we can't scan anything without it. 😪</h1>
+  </div>
+
+  <div *ngIf="hasPermission === false">
+
+    <h1>Usted denegó el permiso para poder usar la cámara, sin eso no podemos escanear 😿</h1>
+
+  </div>
 
 </div>
